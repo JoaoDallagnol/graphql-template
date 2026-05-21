@@ -1,3 +1,6 @@
 spring:
-  application:
-    name: demo
+  graphql:
+    graphiql:
+      enabled: true
+
+kind: Application
