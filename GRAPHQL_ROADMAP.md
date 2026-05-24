@@ -16,10 +16,10 @@ This roadmap was created based on the analysis of your current project and follo
 
 ### 1.1 Expand Basic Queries
 **Objective:** Master read operations
-- [ ] Add `allBooks` query (list all books)
-- [ ] Add `allAuthors` query (list all authors)
-- [ ] Implement simple filters (`booksByAuthor`)
-- [ ] Add optional fields in schema
+- [x] Add `allBooks` query (list all books)
+- [x] Add `allAuthors` query (list all authors)
+- [x] Implement simple filters (`booksByAuthor`)
+- [x] Add optional fields in schema
 
 **Concepts:** Query mapping, arguments, basic filters
 
@@ -214,20 +214,3 @@ This roadmap was created based on the analysis of your current project and follo
 - **Apollo Studio** - Schema management
 - **Altair GraphQL Client** - Advanced testing
 - **GraphQL Voyager** - Schema visualization
-
-### Recommended Books
-- "Learning GraphQL" by Eve Porcello & Alex Banks
-- "Production Ready GraphQL" by Marc-André Giroux
-
----
-
-## 🎯 Suggested Timeline
-
-| Phase | Estimated Duration | Main Focus |
-|-------|-------------------|------------|
-| Phase 1 | 1-2 weeks | Solid foundations |
-| Phase 2 | 2-3 weeks | Complete CRUD + persistence |
-| Phase 3 | 2-3 weeks | Performance and optimization |
-| Phase 4 | 2-3 weeks | Security and production |
-| Phase 5 | 1-2 weeks | Monitoring |
-| Phase 6 | 3-4 weeks | Advanced features |

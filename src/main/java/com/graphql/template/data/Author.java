@@ -17,4 +17,8 @@ public record Author (String id, String firstName, String lastName) {
                 .findFirst()
                 .orElse(null);
     }
+
+    public static List<Author> getAllAuthors() {
+        return authors;
+    }
 }
