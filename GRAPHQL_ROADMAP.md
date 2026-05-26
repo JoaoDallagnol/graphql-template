@@ -25,10 +25,10 @@ This roadmap was created based on the analysis of your current project and follo
 
 ### 1.2 Improve Data Structure
 **Objective:** Better organize data
-- [ ] Create service classes (`BookService`, `AuthorService`)
-- [ ] Separate mocked data into JSON files
-- [ ] Implement Repository pattern (in-memory)
-- [ ] Add more example data
+- [x] Create service classes (`BookService`, `AuthorService`)
+- [x] Separate mocked data into JSON files
+- [x] Implement Repository pattern (in-memory)
+- [x] Add more example data
 
 **Concepts:** Separation of concerns, Repository pattern
 

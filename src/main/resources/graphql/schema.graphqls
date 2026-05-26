@@ -1,1 +1,5 @@
+# This file defines the root types for the GraphQL schema.
+# The 'Query' type is special and lists all the top-level entry points for queries.
+# Other types (like 'Book' or 'Author') will be added to this schema
+# by extending these root types in other .graphqls files.
 type Query {}

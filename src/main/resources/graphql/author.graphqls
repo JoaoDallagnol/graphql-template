@@ -1,9 +1,21 @@
+# This file extends the root 'Query' type to add author-related queries
+# and defines the 'Author' type structure.
+
+# 'extend type Query' means we are adding new fields to the existing Query type
+# defined in schema.graphqls.
 extend type Query {
+    # 'authors' is a query field that returns a list of 'Author' objects.
+    # The '!' indicates that the list itself cannot be null, and the items
+    # within the list also cannot be null.
     authors: [Author!]
 }
 
+# The 'Author' type defines the structure of an Author object in our GraphQL API.
 type Author {
+    # 'id' is a unique identifier for the author. 'ID' is a built-in GraphQL scalar type.
     id: ID
+    # 'firstName' is the first name of the author, a String.
     firstName: String
+    # 'lastName' is the last name of the author, a String.
     lastName: String
 }

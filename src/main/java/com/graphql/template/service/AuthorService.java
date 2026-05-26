@@ -2,6 +2,7 @@ package com.graphql.template.service;
 
 import com.graphql.template.data.Author;
 import com.graphql.template.repository.AuthorRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -9,13 +10,14 @@ import java.util.List;
 @Service
 public class AuthorService {
 
-    private final AuthorRepository authorRepository;
+    @Autowired
+    private AuthorRepository authorRepository;
 
-    public AuthorService(AuthorRepository authorRepository) {
-        this.authorRepository = authorRepository;
+    public List<Author> getAllAuthors() {
+        return authorRepository.getAllAuthors();
     }
 
-    public List<Author> getAllAuthors() {return authorRepository.getAllAuthors();}
-
-    public Author getById(String id) {return authorRepository.getById(id);}
+    public Author getById(String id) {
+        return authorRepository.getById(id);
+    }
 }
