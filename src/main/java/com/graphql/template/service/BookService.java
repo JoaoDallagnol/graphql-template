@@ -14,7 +14,11 @@ public class BookService {
     private BookRepository bookRepository;
 
     public List<Book> books() {
-        return bookRepository.getAllBooks();
+        return bookRepository.getAllBooks(null, null, null);
+    }
+
+    public List<Book> books(String id, String authorId, String name) {
+        return bookRepository.getAllBooks(id, authorId, name);
     }
 
     public Book bookById(String id) {

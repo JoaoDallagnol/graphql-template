@@ -22,8 +22,12 @@ public class BookRepository {
                 .orElse(null);
     }
 
-    public List<Book> getAllBooks() {
-        return books;
+    public List<Book> getAllBooks(String id, String authorId, String name) {
+        return books.stream()
+                .filter(book -> id == null || book.id().equals(id))
+                .filter(book -> authorId == null || book.authorId().equals(authorId))
+                .filter(book -> name == null || book.name().equalsIgnoreCase(name))
+                .toList();
     }
 
     public List<Book> getBooksByAuthor(String id) {

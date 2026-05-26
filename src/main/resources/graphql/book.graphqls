@@ -19,6 +19,12 @@ extend type Query {
     # It takes one argument:
     # - 'id': The ID of the author whose books to retrieve. The 'ID!' indicates it's a non-nullable ID.
     booksByAuthor(id: ID!): [Book!]
+
+    booksWithFilter(
+        id: ID
+        authorId: ID
+        name: String
+    ): [Book!]
 }
 
 # The 'Book' type defines the structure of a Book object in our GraphQL API.

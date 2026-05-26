@@ -56,6 +56,14 @@ public class BookController {
         return bookService.booksByAuthor(id);
     }
 
+    @QueryMapping
+    public List<Book> booksWithFilter(
+            @Argument String id,
+            @Argument String authorId,
+            @Argument String name) {
+        return bookService.books(id, authorId, name);
+    }
+
     /**
      * This method resolves the 'author' field within a 'Book' type in the GraphQL schema.
      * The @SchemaMapping annotation indicates that this method is a field resolver.
