@@ -1,31 +1,35 @@
 package com.graphql.template.service;
 
-import com.graphql.template.data.Book;
+import com.graphql.template.dto.BookDTO;
+import com.graphql.template.mapper.BookMapper;
 import com.graphql.template.repository.BookRepository;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.UUID;
 
 @Service
+@RequiredArgsConstructor
 public class BookService {
 
-    @Autowired
-    private BookRepository bookRepository;
+    private final BookRepository bookRepository;
+    private final BookMapper bookMapper;
 
-    public List<Book> books() {
-        return bookRepository.getAllBooks(null, null, null);
+    public List<BookDTO> books() {
+        return bookRepository.findAll().stream().map(bookMapper::toDto).toList();
     }
 
-    public List<Book> books(String id, String authorId, String name) {
-        return bookRepository.getAllBooks(id, authorId, name);
+    public List<BookDTO> books(String id, String authorId, String name) {
+        return bookRepository.findBooksWithFilters(id, authorId, name)
+                .stream().map(bookMapper::toDto).toList();
     }
 
-    public Book bookById(String id) {
-        return bookRepository.getById(id);
+    public BookDTO bookById(String id) {
+        return bookRepository.findById(UUID.fromString(id)).map(bookMapper::toDto).orElse(null);
     }
 
-    public List<Book> booksByAuthor(String id) {
-        return bookRepository.getBooksByAuthor(id);
+    public List<BookDTO> booksByAuthor(String id) {
+        return bookRepository.findBooksByAuthorId(id).stream().map(bookMapper::toDto).toList();
     }
 }

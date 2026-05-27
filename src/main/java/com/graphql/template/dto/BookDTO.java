@@ -1,6 +1,6 @@
-package com.graphql.template.data;
+package com.graphql.template.dto;
 
-public record Book(
+public record BookDTO(
         String id,
         String name,
         int pageCount,

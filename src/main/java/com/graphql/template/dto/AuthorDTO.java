@@ -1,6 +1,6 @@
-package com.graphql.template.data;
+package com.graphql.template.dto;
 
-public record Author (
+public record AuthorDTO (
         String id,
         String firstName,
         String lastName

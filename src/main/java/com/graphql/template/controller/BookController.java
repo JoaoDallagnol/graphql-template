@@ -1,10 +1,10 @@
 package com.graphql.template.controller;
 
-import com.graphql.template.data.Author;
-import com.graphql.template.data.Book;
+import com.graphql.template.dto.AuthorDTO;
+import com.graphql.template.dto.BookDTO;
 import com.graphql.template.service.AuthorService;
 import com.graphql.template.service.BookService;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
 import org.springframework.graphql.data.method.annotation.Argument;
 import org.springframework.graphql.data.method.annotation.QueryMapping;
 import org.springframework.graphql.data.method.annotation.SchemaMapping;
@@ -13,13 +13,11 @@ import org.springframework.stereotype.Controller;
 import java.util.List;
 
 @Controller
+@RequiredArgsConstructor
 public class BookController {
 
-    @Autowired
-    private BookService bookService;
-
-    @Autowired
-    private AuthorService authorService;
+    private final BookService bookService;
+    private final AuthorService authorService;
 
     /**
      * This method resolves the 'books' query defined in the GraphQL schema (book.graphqls).
@@ -28,7 +26,7 @@ public class BookController {
      * @return A list of all books.
      */
     @QueryMapping
-    public List<Book> books() {
+    public List<BookDTO> books() {
         return bookService.books();
     }
 
@@ -40,7 +38,7 @@ public class BookController {
      * @return The Book object matching the given ID, or null if not found.
      */
     @QueryMapping
-    public Book bookById(@Argument String id) {
+    public BookDTO bookById(@Argument String id) {
         return bookService.bookById(id);
     }
 
@@ -52,12 +50,12 @@ public class BookController {
      * @return A list of Book objects written by the specified author.
      */
     @QueryMapping
-    public List<Book> booksByAuthor(@Argument String id) {
+    public List<BookDTO> booksByAuthor(@Argument String id) {
         return bookService.booksByAuthor(id);
     }
 
     @QueryMapping
-    public List<Book> booksWithFilter(
+    public List<BookDTO> booksWithFilter(
             @Argument String id,
             @Argument String authorId,
             @Argument String name) {
@@ -73,7 +71,7 @@ public class BookController {
      * @return The Author object associated with the book.
      */
     @SchemaMapping
-    public Author author(Book book) {
+    public AuthorDTO author(BookDTO book) {
         return authorService.getById(book.authorId());
     }
 }

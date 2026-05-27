@@ -1,38 +1,36 @@
 package com.graphql.template.repository;
 
-import com.graphql.template.data.Book;
-import org.springframework.stereotype.Component;
+import com.graphql.template.entity.BookEntity;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
+import org.springframework.stereotype.Repository;
 
-import java.util.Arrays;
 import java.util.List;
+import java.util.UUID;
 
-@Component
-public class BookRepository {
-    private final static List<Book> books = Arrays.asList(
-            new Book("book-1", "Effective Java", 416, "author-1"),
-            new Book("book-2", "Hitchhiker's Guide to the Galaxy", 208, "author-2"),
-            new Book("book-3", "Down Under", 436, "author-3"),
-            new Book("book-4", "Atomic Habits", 600, "author-2")
+@Repository
+public interface BookRepository extends JpaRepository<BookEntity, UUID> {
+
+    @Query("""
+        SELECT b
+        FROM BookEntity b
+        WHERE (:id IS NULL OR b.bookId = :id)
+          AND (:authorId IS NULL OR b.author.id = :authorId)
+          AND (:name IS NULL OR LOWER(b.name) LIKE LOWER(CONCAT('%', :name, '%')))
+    """)
+    List<BookEntity> findBooksWithFilters(
+            @Param("id") String id,
+            @Param("authorId") String authorId,
+            @Param("name") String name
     );
 
-    public Book getById(String id) {
-        return books.stream()
-                .filter(book -> book.id().equals(id))
-                .findFirst()
-                .orElse(null);
-    }
-
-    public List<Book> getAllBooks(String id, String authorId, String name) {
-        return books.stream()
-                .filter(book -> id == null || book.id().equals(id))
-                .filter(book -> authorId == null || book.authorId().equals(authorId))
-                .filter(book -> name == null || book.name().equalsIgnoreCase(name))
-                .toList();
-    }
-
-    public List<Book> getBooksByAuthor(String id) {
-        return books.stream()
-                .filter(book -> book.authorId().equals(id))
-                .toList();
-    }
+    @Query("""
+        SELECT b
+        FROM BookEntity b
+        WHERE b.author.id = :authorId
+    """)
+    List<BookEntity> findBooksByAuthorId(
+            @Param("authorId") String authorId
+    );
 }

@@ -1,18 +1,18 @@
 package com.graphql.template.controller;
 
-import com.graphql.template.data.Author;
+import com.graphql.template.dto.AuthorDTO;
 import com.graphql.template.service.AuthorService;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
 import org.springframework.graphql.data.method.annotation.QueryMapping;
 import org.springframework.stereotype.Controller;
 
 import java.util.List;
 
 @Controller
+@RequiredArgsConstructor
 public class AuthorController {
 
-    @Autowired
-    private AuthorService authorService;
+    private final AuthorService authorService;
 
     /**
      * This method resolves the 'authors' query defined in the GraphQL schema (author.graphqls).
@@ -21,7 +21,7 @@ public class AuthorController {
      * @return A list of all authors.
      */
     @QueryMapping
-    public List<Author> authors() {
+    public List<AuthorDTO> authors() {
         return authorService.getAllAuthors();
     }
 }
