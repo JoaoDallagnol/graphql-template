@@ -34,10 +34,10 @@ This roadmap was created based on the analysis of your current project and follo
 
 ### 1.3 Basic Validation and Error Handling
 **Objective:** Make API more robust
-- [ ] Implement ID validation
-- [ ] Handle "not found" cases
-- [ ] Add custom error messages
-- [ ] Implement basic GraphQL error handling
+- [x] Implement ID validation
+- [x] Handle "not found" cases
+- [x] Add custom error messages
+- [x] Implement basic GraphQL error handling
 
 **Concepts:** Validation, error handling, GraphQL errors
 
@@ -57,11 +57,11 @@ This roadmap was created based on the analysis of your current project and follo
 
 ### 2.2 Database Persistence
 **Objective:** Replace in-memory data
-- [ ] Configure H2 database (in-memory for development)
-- [ ] Add Spring Data JPA
-- [ ] Create JPA entities (`@Entity`)
-- [ ] Implement JPA repositories
-- [ ] Migrate mocked data to database
+- [x] Configure H2 database (in-memory for development)
+- [x] Add Spring Data JPA
+- [x] Create JPA entities (`@Entity`)
+- [x] Implement JPA repositories
+- [x] Migrate mocked data to database
 
 **Concepts:** JPA, Spring Data, persistence
 

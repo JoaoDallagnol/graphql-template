@@ -1,7 +1,7 @@
 package com.graphql.template.dto;
 
 public record AuthorDTO (
-        String id,
+        Long id,
         String firstName,
         String lastName
 ) {}

@@ -1,8 +1,8 @@
 package com.graphql.template.dto;
 
 public record BookDTO(
-        String id,
+        Long id,
         String name,
         int pageCount,
-        String authorId
+        Long authorId
 ) {}

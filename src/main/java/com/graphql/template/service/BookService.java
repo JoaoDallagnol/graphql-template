@@ -1,13 +1,14 @@
 package com.graphql.template.service;
 
+import com.graphql.template.constants.ErrorCode;
 import com.graphql.template.dto.BookDTO;
+import com.graphql.template.exception.NotFoundException;
 import com.graphql.template.mapper.BookMapper;
 import com.graphql.template.repository.BookRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.UUID;
 
 @Service
 @RequiredArgsConstructor
@@ -20,16 +21,17 @@ public class BookService {
         return bookRepository.findAll().stream().map(bookMapper::toDto).toList();
     }
 
-    public List<BookDTO> books(String id, String authorId, String name) {
+    public List<BookDTO> books(Long id, String authorId, String name) {
         return bookRepository.findBooksWithFilters(id, authorId, name)
                 .stream().map(bookMapper::toDto).toList();
     }
 
-    public BookDTO bookById(String id) {
-        return bookRepository.findById(UUID.fromString(id)).map(bookMapper::toDto).orElse(null);
+    public BookDTO bookById(Long id) {
+        return bookRepository.findById(id).map(bookMapper::toDto).orElseThrow(
+                () -> new NotFoundException(ErrorCode.BOOK_NOT_FOUND));
     }
 
-    public List<BookDTO> booksByAuthor(String id) {
+    public List<BookDTO> booksByAuthor(Long id) {
         return bookRepository.findBooksByAuthorId(id).stream().map(bookMapper::toDto).toList();
     }
 }

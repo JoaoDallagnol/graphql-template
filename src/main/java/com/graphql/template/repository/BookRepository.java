@@ -7,10 +7,9 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
-import java.util.UUID;
 
 @Repository
-public interface BookRepository extends JpaRepository<BookEntity, UUID> {
+public interface BookRepository extends JpaRepository<BookEntity, Long> {
 
     @Query("""
         SELECT b
@@ -20,7 +19,7 @@ public interface BookRepository extends JpaRepository<BookEntity, UUID> {
           AND (:name IS NULL OR LOWER(b.name) LIKE LOWER(CONCAT('%', :name, '%')))
     """)
     List<BookEntity> findBooksWithFilters(
-            @Param("id") String id,
+            @Param("id") Long id,
             @Param("authorId") String authorId,
             @Param("name") String name
     );
@@ -31,6 +30,6 @@ public interface BookRepository extends JpaRepository<BookEntity, UUID> {
         WHERE b.author.id = :authorId
     """)
     List<BookEntity> findBooksByAuthorId(
-            @Param("authorId") String authorId
+            @Param("authorId") Long authorId
     );
 }

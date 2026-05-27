@@ -1,13 +1,14 @@
 package com.graphql.template.service;
 
+import com.graphql.template.constants.ErrorCode;
 import com.graphql.template.dto.AuthorDTO;
+import com.graphql.template.exception.NotFoundException;
 import com.graphql.template.mapper.AuthorMapper;
 import com.graphql.template.repository.AuthorRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.UUID;
 
 @Service
 @RequiredArgsConstructor
@@ -20,7 +21,8 @@ public class AuthorService {
         return authorRepository.findAll().stream().map(authorMapper::toDto).toList();
     }
 
-    public AuthorDTO getById(String id) {
-        return authorRepository.findById(UUID.fromString(id)).map(authorMapper::toDto).orElse(null);
+    public AuthorDTO getById(Long id) {
+        return authorRepository.findById(id).map(authorMapper::toDto).orElseThrow(
+                () -> new NotFoundException(ErrorCode.AUTHOR_NOT_FOUND));
     }
 }

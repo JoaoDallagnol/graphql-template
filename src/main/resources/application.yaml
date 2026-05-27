@@ -1,8 +1,4 @@
 spring:
-  datasource:
-    url: jdbc:h2:mem:rabbitdb
-    username: sa
-    password:
   h2:
     console:
       enabled: true
@@ -16,6 +12,8 @@ spring:
         format_sql: false
     database-platform: org.hibernate.dialect.H2Dialect
   graphql:
+    servlet:
+      exception-handlers-enabled: true
     graphiql:
       enabled: true
 

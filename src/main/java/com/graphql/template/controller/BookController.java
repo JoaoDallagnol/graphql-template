@@ -38,7 +38,7 @@ public class BookController {
      * @return The Book object matching the given ID, or null if not found.
      */
     @QueryMapping
-    public BookDTO bookById(@Argument String id) {
+    public BookDTO bookById(@Argument Long id) {
         return bookService.bookById(id);
     }
 
@@ -50,13 +50,13 @@ public class BookController {
      * @return A list of Book objects written by the specified author.
      */
     @QueryMapping
-    public List<BookDTO> booksByAuthor(@Argument String id) {
+    public List<BookDTO> booksByAuthor(@Argument Long id) {
         return bookService.booksByAuthor(id);
     }
 
     @QueryMapping
     public List<BookDTO> booksWithFilter(
-            @Argument String id,
+            @Argument Long id,
             @Argument String authorId,
             @Argument String name) {
         return bookService.books(id, authorId, name);
