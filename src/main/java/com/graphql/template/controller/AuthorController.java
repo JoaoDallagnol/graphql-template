@@ -1,8 +1,11 @@
 package com.graphql.template.controller;
 
 import com.graphql.template.dto.AuthorDTO;
+import com.graphql.template.dto.AuthorInput;
 import com.graphql.template.service.AuthorService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.graphql.data.method.annotation.Argument;
+import org.springframework.graphql.data.method.annotation.MutationMapping;
 import org.springframework.graphql.data.method.annotation.QueryMapping;
 import org.springframework.stereotype.Controller;
 
@@ -23,5 +26,20 @@ public class AuthorController {
     @QueryMapping
     public List<AuthorDTO> authors() {
         return authorService.getAllAuthors();
+    }
+
+    @MutationMapping
+    public AuthorDTO createAuthor(@Argument AuthorInput author) {
+        return authorService.createAuthor(author);
+    }
+
+    @MutationMapping
+    public AuthorDTO updateAuthor(@Argument Long id, @Argument AuthorInput author) {
+        return authorService.updateAuthor(id, author);
+    }
+
+    @MutationMapping
+    public Long deleteAuthor(@Argument Long id) {
+        return authorService.deleteAuthor(id);
     }
 }

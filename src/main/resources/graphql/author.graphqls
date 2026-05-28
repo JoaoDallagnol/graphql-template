@@ -19,3 +19,14 @@ type Author {
     # 'lastName' is the last name of the author, a String.
     lastName: String
 }
+
+input AuthorInput {
+    firstName: String!
+    lastName: String!
+}
+
+type Mutation {
+    createAuthor(author: AuthorInput!): Author!
+    updateAuthor(id: ID!, author: AuthorInput!): Author!
+    deleteAuthor(id: ID!): ID!
+}

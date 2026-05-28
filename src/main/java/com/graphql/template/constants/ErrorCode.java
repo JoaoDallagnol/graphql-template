@@ -9,7 +9,8 @@ public enum ErrorCode {
 
     BOOK_NOT_FOUND("BOOK_NOT_FOUND","Book not found"),
     AUTHOR_NOT_FOUND("AUTHOR_NOT_FOUND","Author not found"),
-    INVALID_ID("INVALID_ID","Invalid ID");
+    INVALID_ID("INVALID_ID","Invalid ID"),
+    DELETION_NOT_ALLOWED_FOR_AUTHOR("DELETION_NOT_ALLOWED_FOR_AUTHOR", "This Author cannot be deleted");
 
     private final String code;
     private final String message;

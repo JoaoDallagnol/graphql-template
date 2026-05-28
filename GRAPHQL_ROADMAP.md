@@ -47,11 +47,11 @@ This roadmap was created based on the analysis of your current project and follo
 
 ### 2.1 Implement Basic Mutations
 **Objective:** Add write operations
-- [ ] Create `createBook` mutation
-- [ ] Create `updateBook` mutation
-- [ ] Create `deleteBook` mutation
-- [ ] Define Input Types in schema
-- [ ] Implement input validation
+- [x] Create `createBook` mutation
+- [x] Create `updateBook` mutation
+- [x] Create `deleteBook` mutation
+- [x] Define Input Types in schema
+- [x] Implement input validation
 
 **Concepts:** Mutations, Input Types, complete CRUD
 

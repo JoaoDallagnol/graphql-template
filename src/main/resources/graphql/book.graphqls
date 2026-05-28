@@ -27,15 +27,26 @@ extend type Query {
     ): [Book!]
 }
 
-# The 'Book' type defines the structure of a Book object in our GraphQL API.
 type Book {
-    # 'id' is a unique identifier for the book. 'ID' is a built-in GraphQL scalar type.
     id: ID
-    # 'name' is the title of the book, a String.
     name: String
-    # 'pageCount' is the number of pages in the book, an Integer.
     pageCount: Int
-    # 'author' is a field that represents the author of the book.
-    # It establishes a relationship with the 'Author' type.
     author: Author
 }
+
+#type Mutation {
+#    createBook(
+#        name: String!
+#        pageCount: Int!
+#        authorId: ID!
+#    ): Book!
+#
+#    updateBook(
+#        id: ID!
+#        name: String!
+#        pageCount: Int!
+#        authorId: ID!
+#    ): Book!
+#
+#    deleteBook(id: ID!): ID!
+#}

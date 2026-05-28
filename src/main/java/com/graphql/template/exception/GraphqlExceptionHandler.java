@@ -17,20 +17,20 @@ public class GraphqlExceptionHandler extends DataFetcherExceptionResolverAdapter
             Throwable ex,
             DataFetchingEnvironment env
     ) {
-        if (ex instanceof NotFoundException e) {
-            return GraphqlErrorBuilder.newError(env)
+        return switch (ex) {
+            case NotFoundException e -> GraphqlErrorBuilder.newError(env)
                     .message(e.getMessage())
                     .extensions(Map.of("code", e.getErrorCode().getCode()))
                     .build();
-        }
-
-        if (ex instanceof IllegalArgumentException) {
-            return GraphqlErrorBuilder.newError(env)
+            case IllegalArgumentException illegalArgumentException -> GraphqlErrorBuilder.newError(env)
                     .message(ErrorCode.INVALID_ID.getMessage())
                     .extensions(Map.of("code", ErrorCode.INVALID_ID.getCode()))
                     .build();
-        }
-
-        return null;
+            case DeletionNotAllowedException e -> GraphqlErrorBuilder.newError(env)
+                    .message(e.getMessage())
+                    .extensions(Map.of("code", e.getErrorCode().getCode()))
+                    .build();
+            default -> null;
+        };
     }
 }
