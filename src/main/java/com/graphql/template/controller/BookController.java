@@ -2,10 +2,12 @@ package com.graphql.template.controller;
 
 import com.graphql.template.dto.AuthorDTO;
 import com.graphql.template.dto.BookDTO;
+import com.graphql.template.dto.BookInput;
 import com.graphql.template.service.AuthorService;
 import com.graphql.template.service.BookService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.graphql.data.method.annotation.Argument;
+import org.springframework.graphql.data.method.annotation.MutationMapping;
 import org.springframework.graphql.data.method.annotation.QueryMapping;
 import org.springframework.graphql.data.method.annotation.SchemaMapping;
 import org.springframework.stereotype.Controller;
@@ -70,8 +72,23 @@ public class BookController {
      * @param book The parent Book object for which the author is being resolved.
      * @return The Author object associated with the book.
      */
-    @SchemaMapping
+    @SchemaMapping(typeName = "Book", field = "author")
     public AuthorDTO author(BookDTO book) {
         return authorService.getById(book.authorId());
+    }
+
+    @MutationMapping
+    public BookDTO createBook(@Argument BookInput book) {
+        return bookService.createBook(book);
+    }
+
+    @MutationMapping
+    public BookDTO updateBook(@Argument Long id, @Argument BookInput book) {
+        return bookService.updateBook(id, book);
+    }
+
+    @MutationMapping
+    public Long deleteBook(@Argument Long id) {
+        return bookService.deleteBook(id);
     }
 }

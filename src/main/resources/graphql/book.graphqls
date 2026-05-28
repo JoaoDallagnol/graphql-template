@@ -34,19 +34,14 @@ type Book {
     author: Author
 }
 
-#type Mutation {
-#    createBook(
-#        name: String!
-#        pageCount: Int!
-#        authorId: ID!
-#    ): Book!
-#
-#    updateBook(
-#        id: ID!
-#        name: String!
-#        pageCount: Int!
-#        authorId: ID!
-#    ): Book!
-#
-#    deleteBook(id: ID!): ID!
-#}
+input BookInput {
+    name: String!
+    pageCount: Int!
+    authorId: ID!
+}
+
+extend type Mutation {
+    createBook(book: BookInput!): Book!
+    updateBook(id: ID, book: BookInput): Book!
+    deleteBook(id: ID!): ID!
+}

@@ -3,3 +3,4 @@
 # Other types (like 'Book' or 'Author') will be added to this schema
 # by extending these root types in other .graphqls files.
 type Query {}
+type Mutation {}
