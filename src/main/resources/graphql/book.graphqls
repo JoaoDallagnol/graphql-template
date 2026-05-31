@@ -1,25 +1,16 @@
-# This file extends the root 'Query' type to add book-related queries
-# and defines the 'Book' type structure.
+# Book queries and mutations
 
-# 'extend type Query' means we are adding new fields to the existing Query type
-# defined in schema.graphqls.
 extend type Query {
-    # 'books' is a query field that returns a list of 'Book' objects.
-    # The '!' indicates that the list itself cannot be null, and the items
-    # within the list also cannot be null.
+    # Fetches all books
     books: [Book!]
 
-    # 'bookById' is a query field that returns a single 'Book' object.
-    # It takes one argument:
-    # - 'id': The ID of the book to retrieve. The 'ID!' indicates it's a non-nullable ID.
+    # Fetches a single book by ID
     bookById(id: ID!): Book
 
-    # 'booksByAuthor' is a query field that returns a list of 'Book' objects
-    # written by a specific author.
-    # It takes one argument:
-    # - 'id': The ID of the author whose books to retrieve. The 'ID!' indicates it's a non-nullable ID.
+    # Fetches all books written by a specific author
     booksByAuthor(id: ID!): [Book!]
 
+    # Fetches books with optional filters
     booksWithFilter(
         id: ID
         authorId: ID
@@ -34,6 +25,7 @@ type Book {
     author: Author
 }
 
+# Input type for book creation and updates
 input BookInput {
     name: String!
     pageCount: Int!
@@ -41,7 +33,12 @@ input BookInput {
 }
 
 extend type Mutation {
+    # Creates a new book
     createBook(book: BookInput!): Book!
+    
+    # Updates an existing book by ID
     updateBook(id: ID, book: BookInput): Book!
+    
+    # Deletes a book by ID
     deleteBook(id: ID!): ID!
 }

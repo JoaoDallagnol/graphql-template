@@ -17,27 +17,25 @@ public class AuthorController {
 
     private final AuthorService authorService;
 
-    /**
-     * This method resolves the 'authors' query defined in the GraphQL schema (author.graphqls).
-     * The @QueryMapping annotation tells Spring GraphQL to map the 'authors' query
-     * to this method.
-     * @return A list of all authors.
-     */
+    // Query: Fetches all authors
     @QueryMapping
     public List<AuthorDTO> authors() {
         return authorService.getAllAuthors();
     }
 
+    // Mutation: Creates a new author with the provided input data
     @MutationMapping
     public AuthorDTO createAuthor(@Argument AuthorInput author) {
         return authorService.createAuthor(author);
     }
 
+    // Mutation: Updates an existing author by ID with new data
     @MutationMapping
     public AuthorDTO updateAuthor(@Argument Long id, @Argument AuthorInput author) {
         return authorService.updateAuthor(id, author);
     }
 
+    // Mutation: Deletes an author by ID and returns the deleted author's ID
     @MutationMapping
     public Long deleteAuthor(@Argument Long id) {
         return authorService.deleteAuthor(id);

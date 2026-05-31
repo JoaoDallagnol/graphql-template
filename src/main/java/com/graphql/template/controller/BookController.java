@@ -21,41 +21,25 @@ public class BookController {
     private final BookService bookService;
     private final AuthorService authorService;
 
-    /**
-     * This method resolves the 'books' query defined in the GraphQL schema (book.graphqls).
-     * The @QueryMapping annotation tells Spring GraphQL to map the 'books' query
-     * to this method.
-     * @return A list of all books.
-     */
+    // Query: Fetches all books
     @QueryMapping
     public List<BookDTO> books() {
         return bookService.books();
     }
 
-    /**
-     * This method resolves the 'bookById' query defined in the GraphQL schema (book.graphqls).
-     * It fetches a single book by its ID.
-     * The @Argument annotation binds the 'id' argument from the GraphQL query to this method parameter.
-     * @param id The ID of the book to retrieve.
-     * @return The Book object matching the given ID, or null if not found.
-     */
+    // Query: Fetches a single book by ID
     @QueryMapping
     public BookDTO bookById(@Argument Long id) {
         return bookService.bookById(id);
     }
 
-    /**
-     * This method resolves the 'booksByAuthor' query defined in the GraphQL schema (book.graphqls).
-     * It fetches a list of books written by a specific author ID.
-     * The @Argument annotation binds the 'id' argument from the GraphQL query to this method parameter.
-     * @param id The ID of the author whose books to retrieve.
-     * @return A list of Book objects written by the specified author.
-     */
+    // Query: Fetches all books written by a specific author
     @QueryMapping
     public List<BookDTO> booksByAuthor(@Argument Long id) {
         return bookService.booksByAuthor(id);
     }
 
+    // Query: Fetches books with optional filters (id, authorId, name)
     @QueryMapping
     public List<BookDTO> booksWithFilter(
             @Argument Long id,
@@ -64,29 +48,25 @@ public class BookController {
         return bookService.books(id, authorId, name);
     }
 
-    /**
-     * This method resolves the 'author' field within a 'Book' type in the GraphQL schema.
-     * The @SchemaMapping annotation indicates that this method is a field resolver.
-     * When a GraphQL query requests the 'author' field of a 'Book', this method is called.
-     * It receives the parent 'Book' object and uses its authorId to fetch the corresponding Author.
-     * @param book The parent Book object for which the author is being resolved.
-     * @return The Author object associated with the book.
-     */
+    // Field resolver: Resolves the 'author' field for Book type
     @SchemaMapping(typeName = "Book", field = "author")
     public AuthorDTO author(BookDTO book) {
         return authorService.getById(book.authorId());
     }
 
+    // Mutation: Creates a new book with the provided input data
     @MutationMapping
     public BookDTO createBook(@Argument BookInput book) {
         return bookService.createBook(book);
     }
 
+    // Mutation: Updates an existing book by ID with new data
     @MutationMapping
     public BookDTO updateBook(@Argument Long id, @Argument BookInput book) {
         return bookService.updateBook(id, book);
     }
 
+    // Mutation: Deletes a book by ID and returns the deleted book's ID
     @MutationMapping
     public Long deleteBook(@Argument Long id) {
         return bookService.deleteBook(id);
