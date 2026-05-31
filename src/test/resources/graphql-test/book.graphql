@@ -1,0 +1,88 @@
+# Query: Busca todos os livros
+query GetAllBooks {
+    books {
+        id
+        name
+        pageCount
+        author {
+            id
+            firstName
+            lastName
+        }
+    }
+}
+
+# Query: Busca livro por ID
+query GetBookById($id: ID!) {
+    bookById(id: $id) {
+        id
+        name
+        pageCount
+        author {
+            id
+            firstName
+            lastName
+        }
+    }
+}
+
+# Query: Busca livros por autor
+query GetBooksByAuthor($id: ID!) {
+    booksByAuthor(id: $id) {
+        id
+        name
+        pageCount
+        author {
+            id
+            firstName
+            lastName
+        }
+    }
+}
+
+# Query: Busca livros com filtros opcionais
+query GetBooksWithFilter($id: ID, $authorId: ID, $name: String) {
+    booksWithFilter(id: $id, authorId: $authorId, name: $name) {
+        id
+        name
+        pageCount
+        author {
+            id
+            firstName
+            lastName
+        }
+    }
+}
+
+# Mutation: Cria um novo livro
+mutation CreateBook($book: BookInput!) {
+    createBook(book: $book) {
+        id
+        name
+        pageCount
+        author {
+            id
+            firstName
+            lastName
+        }
+    }
+}
+
+# Mutation: Atualiza um livro existente
+mutation UpdateBook($id: ID, $book: BookInput) {
+    updateBook(id: $id, book: $book) {
+        id
+        name
+        pageCount
+        author {
+            id
+            firstName
+            lastName
+        }
+    }
+}
+
+# Mutation: Deleta um livro
+mutation DeleteBook($id: ID!) {
+    deleteBook(id: $id)
+}

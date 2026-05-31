@@ -1,0 +1,31 @@
+# Query: Busca todos os autores
+query GetAllAuthors {
+    authors {
+        id
+        firstName
+        lastName
+    }
+}
+
+# Mutation: Cria um novo autor
+mutation CreateAuthor($author: AuthorInput!) {
+    createAuthor(author: $author) {
+        id
+        firstName
+        lastName
+    }
+}
+
+# Mutation: Atualiza um autor existente
+mutation UpdateAuthor($id: ID!, $author: AuthorInput!) {
+    updateAuthor(id: $id, author: $author) {
+        id
+        firstName
+        lastName
+    }
+}
+
+# Mutation: Deleta um autor
+mutation DeleteAuthor($id: ID!) {
+    deleteAuthor(id: $id)
+}
