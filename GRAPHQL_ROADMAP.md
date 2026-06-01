@@ -67,13 +67,28 @@ This roadmap was created based on the analysis of your current project and follo
 
 ### 2.3 Comprehensive Testing
 **Objective:** Ensure code quality
-- [ ] Tests for all queries
-- [ ] Tests for all mutations
-- [ ] Integration tests with database
-- [ ] Validation and error tests
-- [ ] Test coverage > 80%
+- [x] Tests for all queries
+- [x] Tests for all mutations
+- [x] Integration tests with database
+- [x] Validation and error tests
+- [x] Test coverage > 80%
 
 **Concepts:** Testing, GraphQL testing, integration tests
+
+### 2.4 Refactor to Resolver Pattern
+**Objective:** Improve code organization and maintainability
+- [ ] Understand Resolver vs Controller pattern in GraphQL
+- [ ] Separate `AuthorController` into `AuthorQueryResolver` and `AuthorMutationResolver`
+- [ ] Separate `BookController` into `BookQueryResolver` and `BookMutationResolver`
+- [ ] Move all `@QueryMapping` methods to respective `*QueryResolver` classes
+- [ ] Move all `@MutationMapping` methods to respective `*MutationResolver` classes
+- [ ] Keep `@SchemaMapping` field resolvers in dedicated resolver classes (e.g., `BookFieldResolver`)
+- [ ] Maintain Service layer unchanged (inject services into resolvers)
+- [ ] Maintain Entity and DTO structure (Entity → DTO → GraphQL response)
+- [ ] Update imports and verify all tests pass
+- [ ] Verify GraphQL schema remains unchanged
+
+**Concepts:** Resolver pattern, code organization, separation of concerns
 
 ---
 
