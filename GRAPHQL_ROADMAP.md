@@ -96,9 +96,9 @@ This roadmap was created based on the analysis of your current project and follo
 
 ### 3.1 Solve N+1 Problem
 **Objective:** Optimize database queries
-- [ ] Identify N+1 queries in project
-- [ ] Implement DataLoader for Authors
-- [ ] Configure batch loading
+- [x] Identify N+1 queries in project
+- [x] Implement DataLoader for Authors
+- [x] Configure batch loading
 - [ ] Implement basic caching
 - [ ] Measure performance before/after
 - [ ] Implement query complexity analysis to prevent expensive queries

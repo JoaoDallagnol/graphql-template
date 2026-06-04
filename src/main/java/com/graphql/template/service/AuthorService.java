@@ -50,6 +50,13 @@ public class AuthorService {
         return id;
     }
 
+    public List<AuthorDTO> getByIds(List<Long> ids) {
+        return authorRepository.findAllById(ids)
+                .stream()
+                .map(authorMapper::toDto)
+                .toList();
+    }
+
     private void validateAuthorBooks(AuthorEntity author) {
         if (!author.getBooks().isEmpty()) {
             throw new DeletionNotAllowedException(ErrorCode.DELETION_NOT_ALLOWED_FOR_AUTHOR);
