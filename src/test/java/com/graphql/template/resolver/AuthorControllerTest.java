@@ -1,4 +1,4 @@
-package com.graphql.template.controller;
+package com.graphql.template.resolver;
 
 import com.graphql.template.config.TestGraphQlConfig;
 import com.graphql.template.dto.AuthorDTO;

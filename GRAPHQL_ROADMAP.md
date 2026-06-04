@@ -77,16 +77,16 @@ This roadmap was created based on the analysis of your current project and follo
 
 ### 2.4 Refactor to Resolver Pattern
 **Objective:** Improve code organization and maintainability
-- [ ] Understand Resolver vs Controller pattern in GraphQL
-- [ ] Separate `AuthorController` into `AuthorQueryResolver` and `AuthorMutationResolver`
-- [ ] Separate `BookController` into `BookQueryResolver` and `BookMutationResolver`
-- [ ] Move all `@QueryMapping` methods to respective `*QueryResolver` classes
-- [ ] Move all `@MutationMapping` methods to respective `*MutationResolver` classes
-- [ ] Keep `@SchemaMapping` field resolvers in dedicated resolver classes (e.g., `BookFieldResolver`)
-- [ ] Maintain Service layer unchanged (inject services into resolvers)
-- [ ] Maintain Entity and DTO structure (Entity → DTO → GraphQL response)
-- [ ] Update imports and verify all tests pass
-- [ ] Verify GraphQL schema remains unchanged
+- [x] Understand Resolver vs Controller pattern in GraphQL
+- [x] Separate `AuthorController` into `AuthorQueryResolver` and `AuthorMutationResolver`
+- [x] Separate `BookController` into `BookQueryResolver` and `BookMutationResolver`
+- [x] Move all `@QueryMapping` methods to respective `*QueryResolver` classes
+- [x] Move all `@MutationMapping` methods to respective `*MutationResolver` classes
+- [x] Keep `@SchemaMapping` field resolvers in dedicated resolver classes (e.g., `BookFieldResolver`)
+- [x] Maintain Service layer unchanged (inject services into resolvers)
+- [x] Maintain Entity and DTO structure (Entity → DTO → GraphQL response)
+- [x] Update imports and verify all tests pass
+- [x] Verify GraphQL schema remains unchanged
 
 **Concepts:** Resolver pattern, code organization, separation of concerns
 
