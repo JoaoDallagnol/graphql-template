@@ -16,6 +16,10 @@ spring:
       exception-handlers-enabled: true
     graphiql:
       enabled: true
+  cache:
+    type: caffeine
+    caffeine:
+      spec: maximumSize=1000,expireAfterWrite=5m
 
 logging:
   level:

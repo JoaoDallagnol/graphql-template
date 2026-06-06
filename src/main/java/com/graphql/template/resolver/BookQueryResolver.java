@@ -1,7 +1,6 @@
 package com.graphql.template.resolver;
 
 import com.graphql.template.dto.BookDTO;
-import com.graphql.template.service.AuthorService;
 import com.graphql.template.service.BookService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.graphql.data.method.annotation.Argument;
@@ -15,7 +14,6 @@ import java.util.List;
 public class BookQueryResolver {
 
     private final BookService bookService;
-    private final AuthorService authorService;
 
     // Query: Fetches all books
     @QueryMapping

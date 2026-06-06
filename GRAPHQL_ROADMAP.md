@@ -99,8 +99,8 @@ This roadmap was created based on the analysis of your current project and follo
 - [x] Identify N+1 queries in project
 - [x] Implement DataLoader for Authors
 - [x] Configure batch loading
-- [ ] Implement basic caching
-- [ ] Measure performance before/after
+- [x] Implement basic caching
+- [x] Measure performance before/after
 - [ ] Implement query complexity analysis to prevent expensive queries
 
 **Concepts:** N+1 problem, DataLoader, batching, caching

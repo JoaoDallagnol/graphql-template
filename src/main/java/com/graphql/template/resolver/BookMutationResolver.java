@@ -4,6 +4,7 @@ import com.graphql.template.dto.BookDTO;
 import com.graphql.template.dto.BookInput;
 import com.graphql.template.service.BookService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.graphql.data.method.annotation.Argument;
 import org.springframework.graphql.data.method.annotation.MutationMapping;
 import org.springframework.stereotype.Controller;
@@ -22,12 +23,14 @@ public class BookMutationResolver {
 
     // Mutation: Updates an existing book by ID with new data
     @MutationMapping
+    @CacheEvict(value = "book", key = "#id")
     public BookDTO updateBook(@Argument Long id, @Argument BookInput book) {
         return bookService.updateBook(id, book);
     }
 
     // Mutation: Deletes a book by ID and returns the deleted book's ID
     @MutationMapping
+    @CacheEvict(value = "book", key = "#id")
     public Long deleteBook(@Argument Long id) {
         return bookService.deleteBook(id);
     }
