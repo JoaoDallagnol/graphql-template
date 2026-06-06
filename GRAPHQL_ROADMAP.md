@@ -101,7 +101,7 @@ This roadmap was created based on the analysis of your current project and follo
 - [x] Configure batch loading
 - [x] Implement basic caching
 - [x] Measure performance before/after
-- [ ] Implement query complexity analysis to prevent expensive queries
+- [x] Implement query complexity analysis to prevent expensive queries
 
 **Concepts:** N+1 problem, DataLoader, batching, caching
 
