@@ -9,15 +9,42 @@ import java.util.List;
 
 @Repository
 public interface AuthorRepository extends JpaRepository<AuthorEntity, Long> {
-    // Forward pagination: items after the cursor
+    /**
+     * Forward pagination: retrieves items after a cursor in ascending order.
+     * Cursor represents an ID boundary. Used with first parameter.
+     *
+     * @param cursorId the ID to start after
+     * @param pageable page size (typically first + 1 for lookahead)
+     * @return items ordered by ID ascending, starting after cursorId
+     */
     List<AuthorEntity> findByIdGreaterThanOrderByIdAsc(Long cursorId, Pageable pageable);
 
-    // Backward pagination: items before the cursor
+    /**
+     * Backward pagination: retrieves items before a cursor in descending order.
+     * Returns DESC ordered results; client reverses them to ASC.
+     * Used with last parameter.
+     *
+     * @param cursorId the ID to start before
+     * @param pageable page size (typically last + 1 for lookahead)
+     * @return items ordered by ID descending, starting before cursorId
+     */
     List<AuthorEntity> findByIdLessThanOrderByIdDesc(Long cursorId, Pageable pageable);
 
-    // First page (no cursor) — forward
+    /**
+     * First page forward: retrieves initial items in ascending order.
+     * No cursor provided — starts from beginning.
+     *
+     * @param pageable page size (typically first + 1 for lookahead)
+     * @return items ordered by ID ascending, from start
+     */
     List<AuthorEntity> findByOrderByIdAsc(Pageable pageable);
 
-    // Last page (no cursor) — backward
+    /**
+     * Last page backward: retrieves final items in descending order.
+     * No cursor provided — starts from end. Results need reversing.
+     *
+     * @param pageable page size (typically last + 1 for lookahead)
+     * @return items ordered by ID descending, from end
+     */
     List<AuthorEntity> findByOrderByIdDesc(Pageable pageable);
 }
