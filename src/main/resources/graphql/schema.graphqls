@@ -2,5 +2,19 @@
 # The 'Query' type is special and lists all the top-level entry points for queries.
 # Other types (like 'Book' or 'Author') will be added to this schema
 # by extending these root types in other .graphqls files.
-type Query {}
+# types that can use OR operation for multiple values
+union SearchResult = Book | Author
+
+type Query {
+    searchResults(query: String!): [SearchResult!]!
+}
+
 type Mutation {}
+
+interface Node {
+    id: ID!
+    createAt: DateTime!
+}
+
+# custom type
+scalar DateTime

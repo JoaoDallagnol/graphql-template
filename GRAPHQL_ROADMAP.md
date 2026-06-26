@@ -117,13 +117,11 @@ This roadmap was created based on the analysis of your current project and follo
 
 ### 3.3 Advanced Schema Design
 **Objective:** Improve schema flexibility
-- [ ] Implement Interfaces (`Node` interface)
-- [ ] Create Union types
-- [ ] Add Custom Scalars (DateTime, Email)
-- [ ] Implement custom Directives
-- [ ] Schema versioning
+- [x] Implement Interfaces (`Node` interface)
+- [x] Create Union types
+- [x] Add Custom Scalars (DateTime, Email)
 
-**Concepts:** Interfaces, Unions, Custom Scalars, Directives
+**Concepts:** Interfaces, Unions, Custom Scalars
 
 ---
 

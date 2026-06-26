@@ -18,10 +18,11 @@ extend type Query {
     ): [Book!]
 }
 
-type Book {
-    id: ID
+type Book implements Node {
+    id: ID!
     name: String
     pageCount: Int
+    createAt: DateTime!
     author: Author
 }
 

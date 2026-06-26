@@ -5,6 +5,10 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
+
+import java.time.LocalDateTime;
 
 @Entity
 @Table(name = "books")
@@ -22,6 +26,14 @@ public class BookEntity {
 
     @Column(nullable = false)
     private int pageCount;
+
+    @CreationTimestamp
+    @Column(nullable = false, updatable = false)
+    private LocalDateTime createAt;
+
+    @UpdateTimestamp
+    @Column(nullable = false)
+    private LocalDateTime updateAt;
 
     @ManyToOne
     @JoinColumn(name = "author_id")

@@ -15,9 +15,13 @@ public interface BookMapper {
 
     @Mapping(source = "id", target = "bookId")
     @Mapping(target = "author", ignore = true)
+    @Mapping(target = "createAt", ignore = true)
+    @Mapping(target = "updateAt", ignore = true)
     BookEntity toEntity(BookDTO dto);
 
     @Mapping(target = "bookId", ignore = true)
     @Mapping(target = "author", ignore = true)
+    @Mapping(target = "createAt", ignore = true)
+    @Mapping(target = "updateAt", ignore = true)
     BookEntity toEntity(BookInput input);
 }

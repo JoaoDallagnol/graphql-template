@@ -8,10 +8,11 @@ extend type Query {
 }
 
 # Author type definition
-type Author {
-    id: ID
+type Author implements Node {
+    id: ID!
     firstName: String
     lastName: String
+    createAt: DateTime!
 }
 
 # Input type for author creation and updates

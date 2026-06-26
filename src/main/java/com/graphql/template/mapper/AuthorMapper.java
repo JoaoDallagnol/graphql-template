@@ -14,9 +14,14 @@ public interface AuthorMapper {
 
     @Mapping(source = "firstName", target = "name")
     @Mapping(target = "books", ignore = true)
+    @Mapping(target = "id", ignore = true)
+    @Mapping(target = "createAt", ignore = true)
+    @Mapping(target = "updateAt", ignore = true)
     AuthorEntity toEntity(AuthorDTO dto);
 
     @Mapping(source = "firstName", target = "name")
     @Mapping(target = "books", ignore = true)
+    @Mapping(target = "createAt", ignore = true)
+    @Mapping(target = "updateAt", ignore = true)
     AuthorEntity toEntity(AuthorInput input);
 }
